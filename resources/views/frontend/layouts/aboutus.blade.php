@@ -7,7 +7,8 @@
             <div class="container mx-auto">
                 <!-- Title -->
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-semibold uppercase tracking-tight">{{ $whoweare->title ?? 'WHO WE ARE?' }}</h2>
+                    <h2 class="text-4xl lg:text-5xl font-semibold uppercase tracking-tight">
+                        {{ $whoweare->title ?? 'WHO WE ARE?' }}</h2>
                     <div class="w-16 h-[2px] bg-gray-400 mx-auto mt-3"></div>
                 </div>
 
@@ -91,41 +92,48 @@
             class="absolute left-0 -top-20 h-[460px] w-[259px] hidden lg:block z-10">
 
         <!-- Vision & Mission -->
-        <div class="max-w-7xl flex justify-center items-center mx-auto px-6 py-20">
-            <div class="flex  flex-col lg:flex-row gap-12 lg:gap-20 lg:pl-20">
+        @if ($visionMission)
+            <div class="max-w-7xl flex justify-center items-center mx-auto px-6 py-20">
+                <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 lg:pl-20">
 
-                <!-- Vision -->
-                <div class="max-w-[400px]">
-                    <img src="{{ asset('images/aboutus/Vector (12).png') }}" alt=""
-                        class='min-h-16 min-w-16 object-cover object-center p-2'>
-                    <h2 class="text-5xl font-semibold tracking-tight uppercase">Our vision</h2>
-                    <div class="h-0.5 w-[100px] my-5 bg-gray-500"></div>
+                    <div class="max-w-[400px]">
 
-                    <p class="text-justify text-lg">
-                        To deliver authentic, premium-quality Himalayan products to global consumers
-                        while creating fair, sustainable value for farmers, producers, employees,
-                        and local communities through responsible sourcing, quality manufacturing,
-                        and ethical business practices.
-                    </p>
+                        <img src="{{ asset('uploads/visionmission/' . $visionMission->vision_icon) }}"
+                            class="min-h-16 min-w-16 object-cover p-2">
+
+                        <h2 class="text-5xl font-semibold uppercase">
+                            {{ $visionMission->vision_title }}
+                        </h2>
+
+                        <div class="h-0.5 w-[100px] my-5 bg-gray-500"></div>
+
+                        <p class="text-lg text-justify">
+                            {{ $visionMission->vision_description }}
+                        </p>
+
+                    </div>
+
+
+                    <div class="max-w-[400px]">
+
+                        <img src="{{ asset('uploads/visionmission/' . $visionMission->mission_icon) }}"
+                            class="min-h-16 min-w-16 object-cover p-2">
+
+                        <h2 class="text-5xl font-semibold uppercase">
+                            {{ $visionMission->mission_title }}
+                        </h2>
+
+                        <div class="h-0.5 w-[100px] my-5 bg-gray-500"></div>
+
+                        <p class="text-lg text-justify">
+                            {{ $visionMission->mission_description }}
+                        </p>
+
+                    </div>
+
                 </div>
-
-                <!-- Mission -->
-                <div class="max-w-[400px]">
-                    <img src="{{ asset('images/aboutus/Vector (13).png') }}" alt=""
-                        class='min-h-16 min-w-16 object-cover object-center p-2'>
-                    <h2 class="text-5xl font-semibold tracking-tight uppercase">Our mission</h2>
-                    <div class="h-0.5 w-[100px] my-5 bg-gray-500"></div>
-
-                    <p class="text-justify text-lg">
-                        To become a globally trusted Himalayan products company from Nepal,
-                        known for premium quality, strong compliance, and meaningful impact
-                        through world-class manufacturing, employment generation, and
-                        farmer empowerment.
-                    </p>
-                </div>
-
             </div>
-        </div>
+        @endif
 
 
         <!-- Divider Quote -->
@@ -144,7 +152,7 @@
 
 
         <!-- CORE VALUES -->
-        <div class="max-w-7xl mx-auto px-6 pb-20">
+        {{-- <div class="max-w-7xl mx-auto px-6 pb-20">
 
             <!-- Title -->
             <div class="text-center mb-14">
@@ -218,9 +226,38 @@
 
             </div>
 
+        </div> --}}
+        <!-- CORE VALUES -->
+        <div class="max-w-7xl mx-auto px-6 pb-20">
+
+            <div class="text-center mb-14">
+                <h2 class="text-3xl font-semibold uppercase">
+                    Our Core Value
+                </h2>
+                <div class="w-16 h-[2px] bg-gray-400 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+
+                @foreach ($corevalues as $value)
+                    <div class="flex flex-col items-center text-center p-8 border-b lg:border-r border-gray-300">
+
+                        <img src="{{ asset('uploads/corevalues/' . $value->icon) }}" class="h-10 mb-4">
+
+                        <h3 class="uppercase text-lg font-semibold">
+                            {{ $value->title }}
+                        </h3>
+
+                        <div class="h-[1px] w-24 bg-gray-200 mt-4"></div>
+
+                    </div>
+                @endforeach
+
+            </div>
+
         </div>
-        <img src="{{ asset('images/aboutus/SDA 2.png') }}"
-            class="absolute right-0 -bottom-20 h-100 hidden lg:block z-10">
+
+        <img src="{{ asset('images/aboutus/SDA 2.png') }}" class="absolute right-0 -bottom-20 h-100 hidden lg:block z-10">
 
     </section>
     {{-- Manufacturing --}}

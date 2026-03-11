@@ -122,17 +122,17 @@
                             class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                     </div>
 
-                    <div class="pb-10 text-center shrink-0 px-4">
-                        <h3 class="text-2xl font-bold uppercase tracking-widest leading-relaxed" style="color: #B11E38">
+                    <div class="pb-10 text-center flex justify-center items-center shrink-0 px-4">
+                        <h3 class="text-2xl max-w-[200px] font-bold uppercase tracking-tight leading-relaxed">
                             {{ $first->title }}
                         </h3>
-                        <p class="text-sm text-stone-800 mt-2 opacity-80">Explore Collection</p>
+                       
                     </div>
                 </div>
             @endif
 
             <div
-                class="w-full lg:min-w-max grid grid-cols-1 md:grid-cols-2 lg:grid-rows-2 lg:grid-flow-col gap-6 lg:shrink-0">
+                class="w-auto grid grid-cols-1 md:grid-cols-2 lg:grid-rows-2 lg:grid-flow-col gap-6 lg:shrink-0 ">
 
                 @foreach ($rest as $cat)
                     <div class="group h-full w-full lg:w-[400px] overflow-hidden flex flex-col transition-all duration-300 hover:shadow-lg  border border-transparent hover:border-gray-200"
@@ -146,7 +146,7 @@
 
                         <div class="pb-6 text-center shrink-0 px-2">
                             <h3
-                                class="text-sm font-semibold uppercase tracking-tight text-gray-900 leading-relaxed group-hover:text-[#B11E38] transition-colors">
+                                class="text-lg font-semibold uppercase tracking-tight  leading-relaxed ">
                                 {{ $cat->title }}
                             </h3>
                         </div>

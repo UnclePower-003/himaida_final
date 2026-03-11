@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Corevalue;
 use App\Models\FAQ;
 use App\Models\FAQBanner;
 use App\Models\Formulation;
@@ -13,6 +14,7 @@ use App\Models\ProductCategories;
 use App\Models\ProductDesc;
 use App\Models\Services;
 use App\Models\Stat;
+use App\Models\VisionMission;
 use App\Models\Whoweare;
 
 class HomeController extends Controller
@@ -40,7 +42,10 @@ class HomeController extends Controller
     public function aboutus()
     {
         $whoweare = Whoweare::first();
-        return view('frontend.layouts.aboutus', compact('whoweare'));
+        $visionMission = VisionMission::first();
+        $corevalues = Corevalue::all();
+
+        return view('frontend.layouts.aboutus', compact('whoweare', 'visionMission', 'corevalues'));
     }
 
     public function privatelable()

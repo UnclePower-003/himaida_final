@@ -14,7 +14,6 @@ Route::get('contactus', [HomeController::class, 'contactus'])->name('contactus')
 Route::get('ourbrands', [HomeController::class, 'ourbrands'])->name('ourbrands');
 Route::get('partnership', [HomeController::class, 'partnership'])->name('partnership');
 
-
 // Product Range
 Route::get('shilajitmanufacturing', [ProductRangeController::class, 'shilajitmanufacturing'])->name('shilajitmanufacturing');
 Route::get('supplimentmanufacturing', [ProductRangeController::class, 'supplimentmanufacturing'])->name('supplimentmanufacturing');
@@ -78,6 +77,8 @@ Route::middleware(['auth'])->group(function () {
     */
 
     Route::middleware(['admin_role'])->group(function () {
+
+        // homepage
         Route::resource('homehero', App\Http\Controllers\Admin\HomeHeroController::class);
         Route::resource('homeproductrange', App\Http\Controllers\Admin\HomeProductRangeController::class);
         Route::resource('productdesc', App\Http\Controllers\Admin\ProductDescController::class);
@@ -88,7 +89,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('stats', \App\Http\Controllers\Admin\StatController::class);
         Route::resource('faq', \App\Http\Controllers\Admin\FAQController::class);
         Route::resource('faq_banners', \App\Http\Controllers\Admin\FAQBannerController::class);
-        Route::resource('whoweare',App\Http\Controllers\Admin\WhoweareController::class);
+        Route::resource('whoweare', App\Http\Controllers\Admin\WhoweareController::class);
+
+        // aboutus page
+        Route::resource('visionmission', App\Http\Controllers\Admin\VisionMissionController::class);
+        Route::resource('corevalues', App\Http\Controllers\Admin\CorevalueController::class);
 
     });
 
