@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('visionmission', App\Http\Controllers\Admin\VisionMissionController::class);
         Route::resource('corevalues', App\Http\Controllers\Admin\CorevalueController::class);
         Route::resource('manufacturing', App\Http\Controllers\Admin\ManufacturingController::class);
+        Route::resource('certificationcomponent', App\Http\Controllers\Admin\CertificationComponentController::class);
 
     });
 

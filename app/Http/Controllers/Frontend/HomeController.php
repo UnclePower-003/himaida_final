@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CertificationComponent;
 use App\Models\Corevalue;
 use App\Models\FAQ;
 use App\Models\FAQBanner;
@@ -46,8 +47,9 @@ class HomeController extends Controller
         $visionMission = VisionMission::first();
         $corevalues = Corevalue::all();
         $manufacturing = Manufacturing::latest()->first();
+        $certifications = CertificationComponent::all();
 
-        return view('frontend.layouts.aboutus', compact('whoweare', 'visionMission', 'corevalues', 'manufacturing'));
+        return view('frontend.layouts.aboutus', compact('whoweare', 'visionMission', 'corevalues', 'manufacturing','certifications'));
     }
 
     public function privatelable()

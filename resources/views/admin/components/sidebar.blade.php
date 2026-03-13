@@ -40,6 +40,14 @@
                 </a>
             @endif
 
+            <a href="{{ route('certificationcomponent.index') }}" @click="sidebarOpen = false"
+                class="flex items-center px-4 py-3 hover:bg-primaryL hover:text-white hover:rounded-lg
+                    {{ request()->routeIs('certificationcomponent.*') ? 'bg-primaryD text-white font-semibold rounded-lg' : '' }}">
+                <i class="fa-solid fa-users w-6"></i>
+                <span class="font-medium">Certificates</span>
+            </a>
+
+
 
 
 
@@ -79,7 +87,11 @@
                                 'text' => 'Product Catagories',
                             ],
                             ['route' => 'services.index', 'icon' => 'fa-solid fa-star', 'text' => 'Our Services'],
-                            ['route' => 'process_steps.index', 'icon' => 'fa-solid fa-star', 'text' => 'Process Steps'],
+                            [
+                                'route' => 'process_steps.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Process Steps',
+                            ],
                             [
                                 'route' => 'formulations.index',
                                 'icon' => 'fa-solid fa-star',
@@ -96,9 +108,22 @@
                         'routes' => ['whoweare.*', 'visionmission.*', 'corevalues.*', 'manufacturing.*'],
                         'links' => [
                             ['route' => 'whoweare.index', 'icon' => 'fa-solid fa-star', 'text' => 'Hero Section'],
-                            ['route' => 'visionmission.index', 'icon' => 'fa-solid fa-star', 'text' => 'VisionMission'],
+                            [
+                                'route' => 'visionmission.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'VisionMission',
+                            ],
                             ['route' => 'corevalues.index', 'icon' => 'fa-solid fa-star', 'text' => 'Core Values'],
-                            ['route' => 'manufacturing.index', 'icon' => 'fa-solid fa-star', 'text' => 'Manufacturing'],
+                            [
+                                'route' => 'manufacturing.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Manufacturing',
+                            ],
+                            [
+                                'route' => 'certificationcomponent.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Certificates',
+                            ],
                         ],
                     ],
                 ];
