@@ -9,6 +9,7 @@ use App\Models\FAQBanner;
 use App\Models\Formulation;
 use App\Models\HomeHero;
 use App\Models\HomeProductRange;
+use App\Models\Manufacturing;
 use App\Models\ProcessStep;
 use App\Models\ProductCategories;
 use App\Models\ProductDesc;
@@ -44,8 +45,9 @@ class HomeController extends Controller
         $whoweare = Whoweare::first();
         $visionMission = VisionMission::first();
         $corevalues = Corevalue::all();
+        $manufacturing = Manufacturing::latest()->first();
 
-        return view('frontend.layouts.aboutus', compact('whoweare', 'visionMission', 'corevalues'));
+        return view('frontend.layouts.aboutus', compact('whoweare', 'visionMission', 'corevalues', 'manufacturing'));
     }
 
     public function privatelable()
@@ -53,7 +55,7 @@ class HomeController extends Controller
         return view('frontend.layouts.privatelable');
     }
 
-    public function manufacturing()
+    public function manufacture()
     {
         return view('frontend.layouts.manufacturing');
     }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('aboutus', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('privatelable', [HomeController::class, 'privatelable'])->name('privatelable');
-Route::get('manufacturing', [HomeController::class, 'manufacturing'])->name('manufacturing');
+Route::get('manufacture', [HomeController::class, 'manufacture'])->name('manufacture');
 Route::get('careers', [HomeController::class, 'careers'])->name('careers');
 Route::get('contactus', [HomeController::class, 'contactus'])->name('contactus');
 Route::get('ourbrands', [HomeController::class, 'ourbrands'])->name('ourbrands');
@@ -94,6 +94,7 @@ Route::middleware(['auth'])->group(function () {
         // aboutus page
         Route::resource('visionmission', App\Http\Controllers\Admin\VisionMissionController::class);
         Route::resource('corevalues', App\Http\Controllers\Admin\CorevalueController::class);
+        Route::resource('manufacturing', App\Http\Controllers\Admin\ManufacturingController::class);
 
     });
 

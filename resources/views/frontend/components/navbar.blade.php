@@ -146,7 +146,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('manufacturing') }}"
+                    <a href="{{ route('manufacture') }}"
                         class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out">
                         Manufacturing
                     </a>

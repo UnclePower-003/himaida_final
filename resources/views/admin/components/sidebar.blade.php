@@ -93,11 +93,12 @@
                     [
                         'title' => 'About Us',
                         'icon' => 'fa-solid fa-house',
-                        'routes' => ['whoweare.*', 'visionmission.*', 'corevalues.*',],
+                        'routes' => ['whoweare.*', 'visionmission.*', 'corevalues.*', 'manufacturing.*'],
                         'links' => [
                             ['route' => 'whoweare.index', 'icon' => 'fa-solid fa-star', 'text' => 'Hero Section'],
                             ['route' => 'visionmission.index', 'icon' => 'fa-solid fa-star', 'text' => 'VisionMission'],
                             ['route' => 'corevalues.index', 'icon' => 'fa-solid fa-star', 'text' => 'Core Values'],
+                            ['route' => 'manufacturing.index', 'icon' => 'fa-solid fa-star', 'text' => 'Manufacturing'],
                         ],
                     ],
                 ];

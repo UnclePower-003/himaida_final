@@ -260,8 +260,9 @@
         <img src="{{ asset('images/aboutus/SDA 2.png') }}" class="absolute right-0 -bottom-20 h-100 hidden lg:block z-10">
 
     </section>
+
     {{-- Manufacturing --}}
-    <section class="bg-white py-16 px-4 md:px-8">
+    {{-- <section class="bg-white py-16 px-4 md:px-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
             <div class="flex flex-col items-center space-y-6">
@@ -309,7 +310,57 @@
             </div>
 
         </div>
-    </section>
+    </section> --}}
+
+    @if ($manufacturing)
+        <section class="bg-white py-16 px-4 md:px-8">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <div class="flex flex-col items-center space-y-6">
+
+                    <div class="w-full border-t border-gray-300 pt-4 text-center">
+                        <h3 class="uppercase tracking-[0.3em] font-medium text-black">
+                            {{ $manufacturing->top_text }}
+                        </h3>
+                    </div>
+
+                    <div class="w-full">
+                        <img src="{{ asset('storage/' . $manufacturing->image) }}" class="w-full h-auto object-cover">
+                    </div>
+
+                    <div class="w-full border-b border-gray-300 pb-4 text-center">
+                        <h3 class="uppercase tracking-[0.3em] font-medium text-black">
+                            {{ $manufacturing->bottom_text }}
+                        </h3>
+                    </div>
+
+                </div>
+
+                <div class="flex flex-col">
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-black uppercase leading-tight">
+                        {!! nl2br($manufacturing->title) !!}
+                    </h2>
+
+                    <div class="w-16 h-1 bg-[#C9962A] mt-6 mb-10"></div>
+
+                    <div class="space-y-6 text-stone-800">
+
+                        <p class="text-lg leading-relaxed">
+                            {{ $manufacturing->description_one }}
+                        </p>
+
+                        <p class="text-lg leading-relaxed">
+                            {{ $manufacturing->description_two }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    @endif
     {{-- Certifications & Compliance --}}
     <section class="bg-white pt-10 px-4">
         <div class="max-w-7xl mx-auto text-center">
@@ -364,5 +415,6 @@
             </div>
         </div>
     </section>
+
     @include('frontend.components.getintouch')
 @endsection
