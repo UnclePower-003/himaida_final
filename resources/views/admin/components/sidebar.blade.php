@@ -128,7 +128,7 @@
                         'title' => 'Private Lable',
                         'icon' => 'fa-solid fa-star',
                         'text' => 'Formulation left right',
-                        'routes' => ['privatelablehero.*', 'privatelabelling.*'],
+                        'routes' => ['privatelablehero.*', 'privatelabelling.*', 'distributorship.*'],
                         'links' => [
                             [
                                 'route' => 'privatelablehero.index',
@@ -139,6 +139,11 @@
                                 'route' => 'privatelabelling.index',
                                 'icon' => 'fa-solid fa-star',
                                 'text' => 'PrivateLabelling',
+                            ],
+                            [
+                                'route' => 'distributorship.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Distributorship',
                             ],
                         ],
                     ],

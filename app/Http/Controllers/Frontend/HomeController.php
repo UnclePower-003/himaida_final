@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\CertificationComponent;
 use App\Models\Corevalue;
+use App\Models\Distributorship;
 use App\Models\FAQ;
 use App\Models\FAQBanner;
 use App\Models\Formulation;
@@ -58,8 +59,9 @@ class HomeController extends Controller
     {
         $hero = PrivateLabelHero::latest()->first();
         $privateLabelling = PrivateLabelling::first();
+        $distributorship = Distributorship::first();
 
-        return view('frontend.layouts.privatelable', compact('hero', 'privateLabelling'));
+        return view('frontend.layouts.privatelable', compact('hero', 'privateLabelling', 'distributorship'));
     }
 
     public function manufacture()

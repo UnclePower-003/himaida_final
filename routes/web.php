@@ -100,6 +100,7 @@ Route::middleware(['auth'])->group(function () {
         // privatelable page
         Route::resource('privatelablehero', App\Http\Controllers\Admin\PrivateLabelHeroController::class);
         Route::resource('privatelabelling', App\Http\Controllers\Admin\PrivateLabellingController::class);
+        Route::resource('distributorship', App\Http\Controllers\Admin\DistributorshipController::class);
         
 
     });

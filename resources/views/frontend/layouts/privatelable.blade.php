@@ -140,7 +140,7 @@
     @endif
 
     {{-- Distributorship --}}
-    <section class="bg-[#F4F4F4] py-12 px-4 ">
+    {{-- <section class="bg-[#F4F4F4] py-12 px-4 ">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 ">
 
             <div class="lg:aspect-square  flex flex-col justify-center">
@@ -195,7 +195,75 @@
             </div>
 
         </div>
-    </section>
+    </section> --}}
+
+    @if (isset($distributorship) &&
+            ($distributorship->title || $distributorship->description || !empty($distributorship->points)))
+        <section class="bg-[#F4F4F4] py-12 px-4">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+                {{-- Title / Description / Points --}}
+                <div class="lg:aspect-square flex flex-col justify-center">
+                    @if ($distributorship->title)
+                        <h2 class="text-3xl md:text-4xl font-semibold mb-6">{{ $distributorship->title }}</h2>
+                    @endif
+
+                    @if ($distributorship->description)
+                        <p class="text-[18px] max-w-[450px] text-justify leading-relaxed mb-6">
+                            {{ $distributorship->description }}</p>
+                    @endif
+
+                    @if (!empty($distributorship->points))
+                        <ul class="space-y-3 text-[16px] tracking-tighter">
+                            @foreach ($distributorship->points as $point)
+                                <li class="flex items-center">
+                                    <span class="mr-2 text-[#C9962A]">•</span> {{ $point }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+
+                {{-- Image --}}
+                <div class="lg:aspect-square flex items-center justify-center">
+                    @if ($distributorship->image)
+                        <img src="{{ asset('storage/' . $distributorship->image) }}" alt="Distributorship Image"
+                            class="max-w-full max-h-full object-contain">
+                    @endif
+                </div>
+
+                {{-- Contacts --}}
+                <div class="lg:aspect-square flex flex-col justify-center pl-10">
+                    <div class="mb-8">
+                        <h4 class="text-stone-800 text-[20px] leading-tight ">
+                            Avail The Best Distributorship<br />Manufacturing Services
+                        </h4>
+                        <div class="w-20 h-px bg-black mt-4"></div>
+                    </div>
+                    @if (!empty($distributorship->contacts))
+                        <div class="space-y-6">
+                            @foreach ($distributorship->contacts as $contact)
+                                <div class="flex items-center group">
+                                    @if ($contact['icon'])
+                                        <div
+                                            class=" w-12 h-12 bg-black rounded-full p-4 flex justify-center items-center mr-4 text-center">
+                                            <img src="{{ asset('storage/' . $contact['icon']) }}" class=" w-auto h-auto ">
+                                        </div>
+                                    @else
+                                        <div
+                                            class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                                            ?</div>
+                                    @endif
+                                    <span class="text-lg">{{ $contact['text'] }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+
+            </div>
+        </section>
+    @endif
     {{-- Contract Manufacturing. --}}
     <section class="bg-white py-12 px-4">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
