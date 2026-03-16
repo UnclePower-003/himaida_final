@@ -260,7 +260,6 @@
         <img src="{{ asset('images/aboutus/SDA 2.png') }}" class="absolute right-0 -bottom-20 h-100 hidden lg:block z-10">
 
     </section>
-
     {{-- Manufacturing --}}
     {{-- <section class="bg-white py-16 px-4 md:px-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

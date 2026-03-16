@@ -97,6 +97,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('manufacturing', App\Http\Controllers\Admin\ManufacturingController::class);
         Route::resource('certificationcomponent', App\Http\Controllers\Admin\CertificationComponentController::class);
 
+        // privatelable page
+        Route::resource('privatelablehero', App\Http\Controllers\Admin\PrivateLabelHeroController::class);
+        Route::resource('privatelabelling', App\Http\Controllers\Admin\PrivateLabellingController::class);
+        
+
     });
 
 });

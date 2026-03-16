@@ -50,8 +50,6 @@
 
 
 
-
-
             @php
                 $dropdowns = [
                     [
@@ -123,6 +121,24 @@
                                 'route' => 'certificationcomponent.index',
                                 'icon' => 'fa-solid fa-star',
                                 'text' => 'Certificates',
+                            ],
+                        ],
+                    ],
+                    [
+                        'title' => 'Private Lable',
+                        'icon' => 'fa-solid fa-star',
+                        'text' => 'Formulation left right',
+                        'routes' => ['privatelablehero.*', 'privatelabelling.*'],
+                        'links' => [
+                            [
+                                'route' => 'privatelablehero.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Hero Section',
+                            ],
+                            [
+                                'route' => 'privatelabelling.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'PrivateLabelling',
                             ],
                         ],
                     ],

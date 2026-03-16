@@ -2,48 +2,46 @@
 
 @section('content')
     {{-- hero section --}}
-    <section class="relative z-20">
+    @if ($hero)
+        <section class="relative z-20">
 
-        <!-- Hero Container -->
-        <div class="relative w-full h-full ">
+            <div class="relative w-full h-full">
 
-            <!-- Background Image -->
-            <img src="{{ asset('images/privatelable/BANNNER.png') }}" alt="Private Labelling Banner"
-                class=" w-full object-cover object-center">
+                @if ($hero->image)
+                    <img src="{{ asset('storage/' . $hero->image) }}" alt="Private Labelling Banner"
+                        class="w-full object-cover object-center">
+                @endif
 
+                <div class="absolute inset-0 flex items-center justify-center h-full px-6">
 
+                    <div class="relative text-center uppercase tracking-tight max-w-4xl">
 
-            <!-- Content -->
-            <div class="absolute inset-0 flex items-center justify-center h-full px-6">
+                        <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
+                            {{ $hero->title }}
+                            <span class="text-primaryText">
+                                {{ $hero->highlight_text }}
+                            </span>
+                        </h1>
 
-                <div class="relative text-center uppercase tracking-tight max-w-4xl">
-
-                    <!-- Title -->
-                    <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold  leading-tight">
-                        Offering <span class="text-primaryText">The Best</span>
-                    </h1>
-
-                    <!-- Subtitle -->
-                    <p class="mt-3 text-lg sm:text-2xl md:text-[38px]  font-semibold">
-                        Private Labelling Solutions
-                    </p>
-
-                    <!-- Decorative Triangle -->
-                    <div
-                        class="hidden md:block absolute -top-2 -right-2 
+                        <p class="mt-3 text-lg sm:text-2xl md:text-[38px] font-semibold">
+                            {{ $hero->subtitle }}
+                        </p>
+                        <!-- Decorative Triangle -->
+                        <div
+                            class="hidden md:block absolute -top-2 -right-2 
                     w-0 h-0
                     border-l-[10px] border-l-transparent
                     border-b-[14px] border-b-[#B11E38]
                     rotate-[35deg]">
+                        </div>
                     </div>
 
                 </div>
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
+    @endif
 
     <div class="max-w-7xl mx-auto py-10 flex flex-col justify-center space-y-8 px-3">
         <h1 class='max-w-[650px] text-3xl md:text-4xl lg:text-5xl uppercase font-semibold'>Offering the Best Private
@@ -53,7 +51,7 @@
             products. We offer tailored solutions for distributors, brands, and retailers worldwide.</p>
     </div>
     {{-- Private Labelling --}}
-    <section class="bg-white py-16 px-4 ">
+    {{-- <section class="bg-white py-16 px-4 ">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
             <div class="w-full flex justify-center p-5">
@@ -93,7 +91,53 @@
             </div>
 
         </div>
-    </section>
+    </section> --}}
+
+    @if (isset($privateLabelling) &&
+            ($privateLabelling->title || $privateLabelling->description || !empty($privateLabelling->points)))
+        <section class="bg-white py-16 px-4">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <div class="w-full flex justify-center p-5">
+                    @if ($privateLabelling->image)
+                        <img src="{{ asset('storage/' . $privateLabelling->image) }}"
+                            class="aspect-square object-cover object-center" alt="Private Labelling Image">
+                    @endif
+                </div>
+
+                <div class="flex flex-col">
+
+                    @if ($privateLabelling->title)
+                        <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tight">
+                            {{ $privateLabelling->title }}
+                        </h2>
+                        <div class="w-20 h-0.5 bg-gray-500 mt-4 mb-8"></div>
+                    @endif
+
+                    @if ($privateLabelling->description)
+                        <p class="text-[18px] leading-relaxed">
+                            {{ $privateLabelling->description }}
+                        </p>
+                    @endif
+
+                    @if (!empty($privateLabelling->points))
+                        <ul class="space-y-3 mt-6">
+                            @foreach ($privateLabelling->points as $point)
+                                <li class="flex items-start">
+                                    <span class="text-[#C9962A] mr-2">•</span>
+                                    <span class="text-stone-800 text-[16px] leading-relaxed">
+                                        {{ $point }}
+                                    </span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                </div>
+
+            </div>
+        </section>
+    @endif
 
     {{-- Distributorship --}}
     <section class="bg-[#F4F4F4] py-12 px-4 ">

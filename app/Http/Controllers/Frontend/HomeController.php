@@ -11,6 +11,8 @@ use App\Models\Formulation;
 use App\Models\HomeHero;
 use App\Models\HomeProductRange;
 use App\Models\Manufacturing;
+use App\Models\PrivateLabelHero;
+use App\Models\PrivateLabelling;
 use App\Models\ProcessStep;
 use App\Models\ProductCategories;
 use App\Models\ProductDesc;
@@ -49,12 +51,15 @@ class HomeController extends Controller
         $manufacturing = Manufacturing::latest()->first();
         $certifications = CertificationComponent::all();
 
-        return view('frontend.layouts.aboutus', compact('whoweare', 'visionMission', 'corevalues', 'manufacturing','certifications'));
+        return view('frontend.layouts.aboutus', compact('whoweare', 'visionMission', 'corevalues', 'manufacturing', 'certifications'));
     }
 
     public function privatelable()
     {
-        return view('frontend.layouts.privatelable');
+        $hero = PrivateLabelHero::latest()->first();
+        $privateLabelling = PrivateLabelling::first();
+
+        return view('frontend.layouts.privatelable', compact('hero', 'privateLabelling'));
     }
 
     public function manufacture()
