@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\CertificationComponent;
+use App\Models\ContractManufacturing;
 use App\Models\Corevalue;
 use App\Models\Distributorship;
 use App\Models\FAQ;
@@ -12,6 +13,8 @@ use App\Models\Formulation;
 use App\Models\HomeHero;
 use App\Models\HomeProductRange;
 use App\Models\Manufacturing;
+use App\Models\ManufacturingHeroSection;
+use App\Models\ManufacturingOurPlant;
 use App\Models\PrivateLabelHero;
 use App\Models\PrivateLabelling;
 use App\Models\ProcessStep;
@@ -60,13 +63,17 @@ class HomeController extends Controller
         $hero = PrivateLabelHero::latest()->first();
         $privateLabelling = PrivateLabelling::first();
         $distributorship = Distributorship::first();
+        $contract = ContractManufacturing::latest()->first();
 
-        return view('frontend.layouts.privatelable', compact('hero', 'privateLabelling', 'distributorship'));
+        return view('frontend.layouts.privatelable', compact('hero', 'privateLabelling', 'distributorship', 'contract'));
     }
 
     public function manufacture()
     {
-        return view('frontend.layouts.manufacturing');
+        $hero = ManufacturingHeroSection::latest()->first();
+        $plant = ManufacturingOurPlant::latest()->first();
+
+        return view('frontend.layouts.manufacturing', compact('hero','plant'));
     }
 
     public function careers()

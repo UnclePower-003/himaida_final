@@ -43,14 +43,14 @@
         <!-- Buttons Section -->
         <!-- Row on mobile/tablet, Column on desktop -->
         <div class="flex-shrink-0 flex flex-row md:flex-col gap-2 lg:gap-[10px]  order-3 ml-auto lg:ml-0">
-            <button
-                class="bg-[#B31B34] hover:bg-[#92162a] text-white text-[8px] md:text-[10px] font-medium py-2 px-2 md:px-6 md:py-2  rounded-full uppercase tracking-wider transition duration-200 whitespace-nowrap">
+            <a class="bg-[#B31B34] hover:bg-[#92162a] text-white text-[8px] md:text-[10px] font-medium py-2 px-2 md:px-6 md:py-2  rounded-full uppercase tracking-wider transition duration-200 whitespace-nowrap"
+                href="{{ route('contactus') }}">
                 Contact Us
-            </button>
-            <button
-                class="bg-[#B31B34] hover:bg-[#92162a] text-white text-[8px] md:text-[10px] font-medium py-2 px-2 md:px-6 md:py-2  rounded-full uppercase tracking-wider transition duration-200 whitespace-nowrap">
+            </a>
+            <a class="bg-[#B31B34] hover:bg-[#92162a] text-white text-[8px] md:text-[10px] font-medium py-2 px-2 md:px-6 md:py-2  rounded-full uppercase tracking-wider transition duration-200 whitespace-nowrap"
+                href="{{ route('contactus') }}">
                 Chat Now
-            </button>
+            </a>
         </div>
 
     </div>
@@ -125,7 +125,7 @@
                         <a href="{{ route('tea') }}"
                             class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
                             Tea
-                        </a> 
+                        </a>
                         <a href="{{ route('honeymanufacturing') }}"
                             class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
                             honeymanu facturing
@@ -184,7 +184,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href=""
+                    <a href="{{ route('aboutus') }}"
                         class="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
                         About Us
                     </a>
@@ -209,21 +209,37 @@
 
                     {{-- Mobile Dropdown Menu --}}
                     <div id="mobile-product-menu" class="hidden bg-gray-50">
-                        <a href=""
+                        <a href="{{ route('shilajitmanufacturing') }}"
                             class="block px-8 py-2 text-gray-700 hover:bg-blue-100 hover:text-stone-600 transition duration-200">
-                            Category 1
+                            Shilajit Manufacturing
                         </a>
-                        <a href=""
+                        <a href="{{ route('supplimentmanufacturing') }}"
                             class="block px-8 py-2 text-gray-700 hover:bg-blue-100 hover:text-stone-600 transition duration-200">
-                            Category 2
+                            Suppliment Manufacturing
                         </a>
-                        <a href=""
+                        <a href="{{ route('herbalmanufacturing') }}"
                             class="block px-8 py-2 text-gray-700 hover:bg-blue-100 hover:text-stone-600 transition duration-200">
-                            Category 3
+                            Herbal Manufacturing
                         </a>
-                        <a href=""
+                        <a href="{{ route('spicesmanufacturing') }}"
                             class="block px-8 py-2 text-gray-700 hover:bg-blue-100 hover:text-stone-600 transition duration-200">
-                            Category 4
+                            Spices
+                        </a>
+                        <a href="{{ route('driedfood') }}"
+                            class="block px-8 py-2 text-gray-700 hover:bg-blue-100 hover:text-stone-600 transition duration-200">
+                            Dried Food
+                        </a>
+                        <a href="{{ route('honeyproduts') }}"
+                            class="block px-8 py-2 text-gray-700 hover:bg-blue-100 hover:text-stone-600 transition duration-200">
+                            honey produts
+                        </a>
+                        <a href="{{ route('tea') }}"
+                            class="block px-8 py-2 text-gray-700 hover:bg-blue-100 hover:text-stone-600 transition duration-200">
+                            Tea
+                        </a>
+                        <a href="{{ route('honeymanufacturing') }}"
+                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
+                            honeymanu facturing
                         </a>
                     </div>
                 </li>
@@ -247,13 +263,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href=""
+                    <a href="{{ route('aboutus') }}"
                         class="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
                         Careers
                     </a>
                 </li>
                 <li>
-                    <a href=""
+                    <a href="{{ route('contactus') }}"
                         class="block px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
                         Contact Us
                     </a>

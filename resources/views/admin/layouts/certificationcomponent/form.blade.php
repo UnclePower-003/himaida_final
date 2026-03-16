@@ -1,44 +1,39 @@
 @extends('admin.components.app')
 
 @section('content')
+    <div class="container">
 
-<div class="container">
+        <form method="POST"
+            action="{{ $item->id ? route('certificationcomponent.update', $item->id) : route('certificationcomponent.store') }}"
+            enctype="multipart/form-data">
 
-<form method="POST"
-action="{{ $item->id ? route('certificationcomponent.update',$item->id) : route('certificationcomponent.store') }}"
-enctype="multipart/form-data">
+            @csrf
+            @if ($item->id)
+                @method('PUT') {{-- Method spoofing for update --}}
+            @endif
+            <div class="mb-3">
+                <label>Certification Title</label>
 
-@csrf
+                <input type="text" name="title" class="form-control" value="{{ old('title', $item->title) }}">
+            </div>
 
-<div class="mb-3">
-<label>Certification Title</label>
+            <div class="mb-3">
 
-<input type="text"
-name="title"
-class="form-control"
-value="{{ old('title',$item->title) }}">
-</div>
+                <label>Image</label>
 
-<div class="mb-3">
+                <input type="file" name="image" class="form-control">
 
-<label>Image</label>
+                @if ($item->image)
+                    <img src="{{ asset('storage/' . $item->image) }}" width="120" class="mt-2">
+                @endif
 
-<input type="file" name="image" class="form-control">
+            </div>
 
-@if($item->image)
-<img src="{{ asset('storage/'.$item->image) }}"
-width="120"
-class="mt-2">
-@endif
+            <button class="btn btn-success">
+                {{ $item->id ? 'Update' : 'Create' }}
+            </button>
 
-</div>
+        </form>
 
-<button class="btn btn-success">
-{{ $item->id ? 'Update' : 'Create' }}
-</button>
-
-</form>
-
-</div>
-
+    </div>
 @endsection

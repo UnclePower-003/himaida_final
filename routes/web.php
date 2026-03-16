@@ -101,7 +101,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('privatelablehero', App\Http\Controllers\Admin\PrivateLabelHeroController::class);
         Route::resource('privatelabelling', App\Http\Controllers\Admin\PrivateLabellingController::class);
         Route::resource('distributorship', App\Http\Controllers\Admin\DistributorshipController::class);
-        
+        Route::resource('contract_manufacturing', App\Http\Controllers\Admin\ContractManufacturingController::class);
+
+        // manufacturing page
+        Route::resource('manufacturingherosection', App\Http\Controllers\Admin\ManufacturingHeroSectionController::class);
+        Route::resource('manufacturingOurPlant', App\Http\Controllers\Admin\ManufacturingOurPlantController::class);
 
     });
 

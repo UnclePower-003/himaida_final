@@ -128,7 +128,12 @@
                         'title' => 'Private Lable',
                         'icon' => 'fa-solid fa-star',
                         'text' => 'Formulation left right',
-                        'routes' => ['privatelablehero.*', 'privatelabelling.*', 'distributorship.*'],
+                        'routes' => [
+                            'privatelablehero.*',
+                            'privatelabelling.*',
+                            'distributorship.*',
+                            'contract_manufacturing.*',
+                        ],
                         'links' => [
                             [
                                 'route' => 'privatelablehero.index',
@@ -144,6 +149,29 @@
                                 'route' => 'distributorship.index',
                                 'icon' => 'fa-solid fa-star',
                                 'text' => 'Distributorship',
+                            ],
+                            [
+                                'route' => 'contract_manufacturing.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Contract Manufacturing',
+                            ],
+                        ],
+                    ],
+                    [
+                        'title' => 'Manufacturing',
+                        'icon' => 'fa-solid fa-star',
+                        'text' => 'Formulation left right',
+                        'routes' => ['manufacturingherosection.*','manufacturingOurPlant.*',],
+                        'links' => [
+                            [
+                                'route' => 'manufacturingherosection.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Hero Section',
+                            ],
+                            [
+                                'route' => 'manufacturingOurPlant.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Our Plant',
                             ],
                         ],
                     ],

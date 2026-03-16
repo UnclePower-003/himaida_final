@@ -12,42 +12,57 @@
         </style>
     @endpush
     {{-- header herosection --}}
-    <section>
+    {{-- <section>
         <div class="relative w-full">
             <img src="{{ asset('images/manufacturing/Rectangle 75 (1).png') }}" alt=""
                 class='w-full object-cover object-center'>
             <div class="absolute inset-0 bg-black/50"></div>
         </div>
+    </section> --}}
+
+    <section>
+
+        <div class="relative w-full">
+
+            @if (isset($hero->image))
+                <img src="{{ asset('storage/' . $hero->image) }}" class="w-full object-cover object-center">
+            @else
+                <!-- Skeleton Placeholder -->
+                <div class="w-full h-[400px] bg-gray-300 animate-pulse"></div>
+            @endif
+
+            <!-- Overlay Filter -->
+            <div class="absolute inset-0 bg-black/50"></div>
+
+        </div>
+
     </section>
+
     {{-- Our Plant --}}
     <section class='relative'>
         <div class="max-w-7xl mx-auto lg:flex  justify-around px-4 py-10 space-y-5">
 
             <div
-                class="w-full max-w-[455px] aspect-square overflow-hidden flex items-center justify-center border border-gray-100 bg-white">
-                <img src="{{ asset('images/manufacturing/Rectangle 79.png') }}" alt="Manufacturing Plant Facility"
-                    class="w-full h-full object-cover object-center shadow-md transition-transform duration-500 hover:scale-105" />
+                class="w-full   overflow-hidden flex items-center justify-center border border-gray-100 bg-white">
+                @if (isset($plant->image))
+                    <img src="{{ asset('storage/' . $plant->image) }}" alt="Manufacturing Plant Facility"
+                        class="w-full h-full aspect-square max-w-[455px] md:min-w-[455px] object-cover object-center shadow-md transition-transform duration-500 hover:scale-105" />
+                @endif
             </div>
 
             <div class=" bg-white flex flex-col justify-center px-3 lg:p-16">
                 <h2 class="text-3xl md:text-4xl font-semibold uppercase tracking-tight  mb-4">
-                    Our Plant
+                    {{ $plant->title ?? '' }}
                 </h2>
 
                 <div class="w-24 h-0.5 bg-gray-400 mb-8"></div>
 
                 <div class="space-y-6 text-justify">
-                    <p class="text-[18px] leading-relaxed">
-                        Himaida's manufacturing facility is a modern, well-equipped production unit designed to meet
-                        high-quality manufacturing standards for honey-based, herbal, and natural wellness products. Our
-                        advanced machinery and skilled workforce enable us to develop products that align with global
-                        quality expectations.
-                    </p>
-
-                    <p class=" text-[18px] leading-relaxed">
-                        Our facility is supported by efficient infrastructure and an eco-conscious working environment,
-                        reflecting our commitment to sustainability and responsible production.
-                    </p>
+                    @if (isset($plant->descriptions))
+                        @foreach ($plant->descriptions as $desc)
+                            <p class="text-[18px] leading-relaxed">{{ $desc }}</p>
+                        @endforeach
+                    @endif
                 </div>
             </div>
 
@@ -143,6 +158,7 @@
             </div>
         </div>
     </section>
+
     <!-- Accreditation Section Container -->
     <section class="max-w-7xl mx-auto px-6 py-10 md:py-10">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -267,5 +283,4 @@
         </div>
     </section>
     @include('frontend.components.getintouch')
-
 @endsection
