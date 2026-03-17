@@ -12,6 +12,7 @@ use App\Models\FAQBanner;
 use App\Models\Formulation;
 use App\Models\HomeHero;
 use App\Models\HomeProductRange;
+use App\Models\ManifacturingResearchAndInovation;
 use App\Models\Manufacturing;
 use App\Models\ManufacturingHeroSection;
 use App\Models\ManufacturingHighlight;
@@ -81,8 +82,9 @@ class HomeController extends Controller
             ->orderBy('order')
             ->get();
         $certifications = CertificationComponent::all();
+        $data = ManifacturingResearchAndInovation::first();
 
-        return view('frontend.layouts.manufacturing', compact('hero', 'plant', 'leftHighlights', 'rightHighlights','certifications'));
+        return view('frontend.layouts.manufacturing', compact('hero', 'plant', 'leftHighlights', 'rightHighlights','certifications','data'));
     }
 
     public function careers()

@@ -161,7 +161,12 @@
                         'title' => 'Manufacturing',
                         'icon' => 'fa-solid fa-star',
                         'text' => 'Formulation left right',
-                        'routes' => ['manufacturingherosection.*', 'manufacturingOurPlant.*', 'manufacturing_highlights.*'],
+                        'routes' => [
+                            'manufacturingherosection.*',
+                            'manufacturingOurPlant.*',
+                            'manufacturing_highlights.*',
+                            'manifacturing_research.*',
+                        ],
                         'links' => [
                             [
                                 'route' => 'manufacturingherosection.index',
@@ -177,6 +182,11 @@
                                 'route' => 'manufacturing_highlights.index',
                                 'icon' => 'fa-solid fa-star',
                                 'text' => 'Highlights',
+                            ],
+                            [
+                                'route' => 'manifacturing_research.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Research & Innovation',
                             ],
                         ],
                     ],

@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ManifacturingResearchAndInovation extends Model
+{
+    protected $fillable = [
+        'title',
+        'image',
+        'descriptions',
+    ];
+
+    protected $casts = [
+        'descriptions' => 'array', // JSON → array auto convert
+    ];
+}
+    

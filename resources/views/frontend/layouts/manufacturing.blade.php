@@ -150,7 +150,8 @@
                     @foreach ($certifications as $item)
                         <div class="flex flex-col items-center justify-center p-8 text-center space-y-3">
                             <img src="{{ asset('storage/' . $item->image) }}" alt="" class='h-20'>
-                            <span class="text-sm font-semibold text-black uppercase tracking-wide"> {{ $item->title }}</span>
+                            <span class="text-sm font-semibold text-black uppercase tracking-wide">
+                                {{ $item->title }}</span>
                         </div>
                     @endforeach
 
@@ -164,50 +165,36 @@
     <section class="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-            <!-- Left Side: Arched Image -->
+            <!-- Image -->
             <div class="relative flex justify-center lg:justify-start">
                 <div class="w-full max-w-md aspect-[4/5] overflow-hidden arch-mask">
-                    <img src="{{ asset('images/manufacturing/arch.png') }}" alt="Laboratory Research"
-                        class="w-full h-full object-cover"
-                        onerror="this.src='https://via.placeholder.com/800x1000?text=Research+Image'">
+                    <img src="{{ $data && $data->image
+                        ? asset('storage/' . $data->image)
+                        : 'https://via.placeholder.com/800x1000?text=Research+Image' }}"
+                        class="w-full h-full object-cover">
                 </div>
             </div>
 
-            <!-- Right Side: Text Content -->
+            <!-- Content -->
             <div class="space-y-6">
+
                 <div>
                     <h2 class="text-3xl md:text-4xl font-semibold text-black tracking-tight uppercase">
-                        Research & Innovation
+                        {{ $data->title ?? 'Research & Innovation' }}
                     </h2>
-                    <!-- Short underline decorative element -->
                     <div class="h-0.5 w-16 bg-gray-400 mt-4"></div>
                 </div>
 
                 <div class="space-y-5 text-stone-800 leading-relaxed text-[16px] text-justify">
-                    <p>
-                        At the heart of our operations lies a modern, in-house Research & Innovation (R&I) Laboratory
-                        dedicated to maintaining the highest benchmarks of product excellence.
-                    </p>
-                    <p>
-                        Our R&I facility serves as the foundation for our product integrity, allowing us to conduct rigorous
-                        in-house testing, bioactive standardization, and stability analysis. This scientific backbone
-                        ensures that our natural wellness solutions are not only authentic but consistently reliable.
-                    </p>
-                    <p>
-                        Our multidisciplinary team includes Food Technology Professionals, Ayurvedic Experts, and Quality &
-                        Safety specialists, supported by a dedicated group of Food Tech interns. Together, they ensure that
-                        our natural wellness solutions are both authentic and scientifically reliable.
-                    </p>
-                    <p>
-                        We don't just source, we innovate. Our laboratory has developed a portfolio of distinctive,
-                        high-performance products, including advanced shilajit blends, honey infusions, herbal blends, and
-                        customized formulations designed for global markets.
-                    </p>
-                    <p>
-                        This strong research foundation allows us to deliver distinctive and reliable products for private
-                        label and third-party partners, making us a trusted leader in Himalayan natural wellness.
-                    </p>
+                    @if ($data && $data->descriptions)
+                        @foreach ($data->descriptions as $desc)
+                            <p>{{ $desc }}</p>
+                        @endforeach
+                    @else
+                        <p>No content available.</p>
+                    @endif
                 </div>
+
             </div>
         </div>
     </section>
