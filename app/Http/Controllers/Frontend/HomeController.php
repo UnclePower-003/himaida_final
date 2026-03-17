@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CareerHero;
+use App\Models\CareerValueSection;
 use App\Models\CertificationComponent;
+use App\Models\ContactUsHero;
 use App\Models\ContractManufacturing;
 use App\Models\Corevalue;
 use App\Models\Distributorship;
@@ -17,6 +20,7 @@ use App\Models\Manufacturing;
 use App\Models\ManufacturingHeroSection;
 use App\Models\ManufacturingHighlight;
 use App\Models\ManufacturingOurPlant;
+use App\Models\OpenPosition;
 use App\Models\PrivateLabelHero;
 use App\Models\PrivateLabelling;
 use App\Models\ProcessStep;
@@ -84,17 +88,23 @@ class HomeController extends Controller
         $certifications = CertificationComponent::all();
         $data = ManifacturingResearchAndInovation::first();
 
-        return view('frontend.layouts.manufacturing', compact('hero', 'plant', 'leftHighlights', 'rightHighlights','certifications','data'));
+        return view('frontend.layouts.manufacturing', compact('hero', 'plant', 'leftHighlights', 'rightHighlights', 'certifications', 'data'));
     }
 
     public function careers()
     {
-        return view('frontend.layouts.careers');
+        $hero = CareerHero::latest()->first();
+        $values = CareerValueSection::orderBy('id', 'asc')->get();
+        $positions = OpenPosition::orderBy('id', 'asc')->get();
+
+        return view('frontend.layouts.careers', compact('hero', 'values', 'positions'));
     }
 
     public function contactus()
     {
-        return view('frontend.layouts.contactus');
+        $hero = ContactUsHero::active()->first();
+
+        return view('frontend.layouts.contactus', compact('hero'));
     }
 
     public function ourbrands()

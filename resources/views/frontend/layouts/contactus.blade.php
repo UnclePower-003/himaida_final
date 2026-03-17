@@ -5,7 +5,7 @@
     <section class="relative z-20">
 
         <!-- Hero Container -->
-        <div class="relative w-full h-full ">
+        {{-- <div class="relative w-full h-full ">
 
             <!-- Background Image -->
             <img src="{{ asset('images/privatelable/BANNNER.png') }}" alt="Private Labelling Banner"
@@ -40,6 +40,36 @@
 
             </div>
 
+        </div> --}}
+        <div class="relative w-full">
+            <!-- Background Image -->
+            <img src="{{ $hero?->background_image_url ?? asset('images/privatelable/BANNNER.png') }}"
+                alt="Private Labelling Banner" class="w-full h-[60dvh] sm:h-[50dvh] xs:h-[40dvh] object-cover object-center">
+
+            <!-- Content -->
+            <div class="absolute inset-0 flex items-center justify-center h-full px-4 sm:px-6">
+                <div class="relative text-center uppercase tracking-tight max-w-4xl px-2">
+                    <!-- Title -->
+                    <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-snug md:leading-tight">
+                        {{ $hero?->title_line1 ?? "LET'S ENHANCE" }}
+                        <span class="text-primaryText">{{ $hero?->title_highlight ?? 'LIVES' }}</span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="mt-2 sm:mt-3 text-sm sm:text-lg md:text-xl lg:text-[28px] font-semibold">
+                        {{ $hero?->subtitle ?? 'WITH OUR "WELLNESS" PRODUCTS TOGETHER' }}
+                    </p>
+
+                    <!-- Decorative Triangle -->
+                    <div
+                        class="hidden md:block absolute -top-2 -right-2
+                       w-0 h-0
+                       border-l-[10px] border-l-transparent
+                       border-b-[14px] border-b-[#B11E38]
+                       rotate-[35deg]">
+                    </div>
+                </div>
+            </div>
         </div>
 
     </section>

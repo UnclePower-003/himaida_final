@@ -4,8 +4,13 @@
     {{-- header herosection --}}
     <section>
         <div class="relative w-full">
-            <img src="{{ asset('images/career/banner.png') }}" alt="" class='w-full object-cover object-center'>
-            {{-- <div class="absolute inset-0 bg-black/50"></div> --}}
+
+            @if ($hero && $hero->image)
+                <img src="{{ asset('storage/' . $hero->image) }}" class="w-full h-[65vh] object-cover object-center">
+            @else
+                <div class="w-full h-[65vh] bg-black/40"></div>
+            @endif
+
         </div>
     </section>
 
@@ -17,21 +22,15 @@
                 <div class="h-0.5 w-16 bg-gray-300"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div
-                    class="flex flex-col justify-center items-center text-center bg-[#FAFAFA] p-5 px-16 rounded-lg shadow-lg space-y-5">
-                    <img src="{{ asset('images/career/Group 117.png') }}" alt="" class='max-h-20 max-w-20'>
-                    <h2 class='uppercase font-medium max-w-[150px] '>collaborative culture</h2>
-                </div>
-                <div
-                    class="flex flex-col justify-center items-center text-center bg-[#FAFAFA] p-5 px-16 rounded-lg shadow-lg space-y-5">
-                    <img src="{{ asset('images/career/Group 117.png') }}" alt="" class='max-h-20 max-w-20'>
-                    <h2 class='uppercase font-medium max-w-[150px] '>collaborative culture</h2>
-                </div>
-                <div
-                    class="flex flex-col justify-center items-center text-center bg-[#FAFAFA] p-5 px-16 rounded-lg shadow-lg space-y-5">
-                    <img src="{{ asset('images/career/Group 117.png') }}" alt="" class='max-h-20 max-w-20'>
-                    <h2 class='uppercase font-medium max-w-[150px] '>collaborative culture</h2>
-                </div>
+                @foreach ($values as $value)
+                    <div
+                        class="flex flex-col justify-center items-center text-center bg-[#FAFAFA] p-5 px-16 rounded-lg shadow-lg space-y-5">
+                        @if ($value->image)
+                            <img src="{{ asset('storage/' . $value->image) }}" alt="" class="max-h-20 max-w-20">
+                        @endif
+                        <h2 class="uppercase font-medium max-w-[150px]">{{ $value->title }}</h2>
+                    </div>
+                @endforeach
 
             </div>
         </div>
@@ -53,110 +52,62 @@
             <!-- Jobs Container -->
             <div class="space-y-6 font-inter">
 
-                <!-- Job Card 1: Sales Manager -->
-                <div
-                    class="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div class="flex-1 space-y-4">
-                        <h3 class="text-2xl font-bold text-black">Sales Manager</h3>
-                        <p class="text-stone-600 text-sm leading-relaxed max-w-2xl">
-                            Drive Himaida's national and global expansion by identifying new B2B opportunities, managing
-                            partners, and closing high-value contracts.
-                        </p>
+                @foreach ($positions as $job)
+                    <div
+                        class="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="flex-1 space-y-4">
+                            <h3 class="text-2xl font-bold text-black"> {{ $job->title }}</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed max-w-2xl">
+                                {{ $job->description }}
+                            </p>
 
-                        <!-- Job Meta Tags -->
-                        <div class="flex flex-wrap gap-3 pt-2">
-                            <span
-                                class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium bg-red-50 text-[#B11E38] border border-red-100">
-                                Sales & Business Development
-                            </span>
-                            <span
-                                class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-stone-700 border border-gray-100">
-                                <svg class="w-3.5 h-3.5 mr-1.5 text-stone-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                            <!-- Job Meta Tags -->
+                            <div class="flex flex-wrap gap-3 pt-2">
+                                <span
+                                    class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium bg-red-50 text-[#B11E38] border border-red-100">
+                                     {{ $job->meta['department'] }}
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-stone-700 border border-gray-100">
+                                    <svg class="w-3.5 h-3.5 mr-1.5 text-stone-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                  {{ $job->meta['location'] }}
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-stone-700 border border-gray-100">
+                                    <svg class="w-3.5 h-3.5 mr-1.5 text-stone-400" fill="currentColor" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg>
+                                    {{ $job->meta['job_type'] }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="flex-shrink-0">
+                            <a href="{{ $job->apply_link ?? '#' }}"
+                                class="w-full md:w-auto bg-[#B11E38] hover:bg-[#8E182D] text-white px-8 py-3 rounded-lg font-semibold flex items-center justify-center transition-all transform hover:scale-[1.02] group">
+                                Apply Now
+                                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
-                                Kathmandu (Headquarters)
-                            </span>
-                            <span
-                                class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-stone-700 border border-gray-100">
-                                <svg class="w-3.5 h-3.5 mr-1.5 text-stone-400" fill="currentColor" viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="10" />
-                                </svg>
-                                Full-Time
-                            </span>
+                            </a>
                         </div>
                     </div>
+                @endforeach
 
-                    <!-- Action Button -->
-                    <div class="flex-shrink-0">
-                        <button
-                            class="w-full md:w-auto bg-[#B11E38] hover:bg-[#8E182D] text-white px-8 py-3 rounded-lg font-semibold flex items-center justify-center transition-all transform hover:scale-[1.02] group">
-                            Apply Now
-                            <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
 
-                <!-- Job Card 2: Content Strategist -->
-                <div
-                    class="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div class="flex-1 space-y-4">
-                        <h3 class="text-2xl font-bold text-black">Content Strategist</h3>
-                        <p class="text-stone-600 text-sm leading-relaxed max-w-2xl">
-                            Shape the voice of our premium brands. You will develop compelling narratives that bridge
-                            Himalayan
-                            tradition with modern global wellness trends across all digital and physical touchpoints.
-                        </p>
 
-                        <!-- Job Meta Tags -->
-                        <div class="flex flex-wrap gap-3 pt-2">
-                            <span
-                                class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium bg-red-50 text-[#B11E38] border border-red-100">
-                                Marketing & Creative
-                            </span>
-                            <span
-                                class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-stone-700 border border-gray-100">
-                                <svg class="w-3.5 h-3.5 mr-1.5 text-stone-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                Kathmandu (Headquarters)
-                            </span>
-                            <span
-                                class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-stone-700 border border-gray-100">
-                                <svg class="w-3.5 h-3.5 mr-1.5 text-stone-400" fill="currentColor" viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="10" />
-                                </svg>
-                                Full-Time
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Action Button -->
-                    <div class="flex-shrink-0">
-                        <button
-                            class="w-full md:w-auto bg-[#B11E38] hover:bg-[#8E182D] text-white px-8 py-3 rounded-lg font-semibold flex items-center justify-center transition-all transform hover:scale-[1.02] group">
-                            Apply Now
-                            <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
 
             </div>
+
         </div>
     </section>
 

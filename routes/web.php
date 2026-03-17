@@ -109,6 +109,15 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('manufacturing_highlights', App\Http\Controllers\Admin\ManufacturingHighlightController::class);
         Route::resource('manifacturing_research', App\Http\Controllers\Admin\ManifacturingResearchAndInovationController::class);
 
+        //Career page
+        Route::resource('careerhero', App\Http\Controllers\Admin\CareerHeroController::class);
+        Route::resource('careervalue', App\Http\Controllers\Admin\CareerValueSectionController::class);
+        Route::resource('openpositions', App\Http\Controllers\Admin\OpenPositionController::class);
+        
+        //contact us page
+        Route::resource('contactushero', App\Http\Controllers\Admin\ContactUsHeroController::class);
+
+
     });
 
 });

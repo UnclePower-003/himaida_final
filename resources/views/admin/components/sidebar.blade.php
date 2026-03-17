@@ -190,6 +190,42 @@
                             ],
                         ],
                     ],
+                    [
+                        'title' => 'Career',
+                        'icon' => 'fa-solid fa-star',
+                        'text' => 'Formulation left right',
+                        'routes' => ['careerhero.*', 'careervalue.*', 'openpositions.*'],
+                        'links' => [
+                            [
+                                'route' => 'careerhero.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Hero Section',
+                            ],
+                            [
+                                'route' => 'careervalue.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Value Section',
+                            ],
+                            [
+                                'route' => 'openpositions.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Open Position Section',
+                            ],
+                        ],
+                    ],
+                    [
+                        'title' => 'Contact us',
+                        'icon' => 'fa-solid fa-star',
+                        'text' => 'Formulation left right',
+                        'routes' => ['contactushero.*'],
+                        'links' => [
+                            [
+                                'route' => 'contactushero.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Hero section',
+                            ],
+                        ],
+                    ],
                 ];
             @endphp
 
