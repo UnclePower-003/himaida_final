@@ -14,6 +14,7 @@ use App\Models\HomeHero;
 use App\Models\HomeProductRange;
 use App\Models\Manufacturing;
 use App\Models\ManufacturingHeroSection;
+use App\Models\ManufacturingHighlight;
 use App\Models\ManufacturingOurPlant;
 use App\Models\PrivateLabelHero;
 use App\Models\PrivateLabelling;
@@ -72,8 +73,16 @@ class HomeController extends Controller
     {
         $hero = ManufacturingHeroSection::latest()->first();
         $plant = ManufacturingOurPlant::latest()->first();
+        $leftHighlights = ManufacturingHighlight::where('column', 'left')
+            ->orderBy('order')
+            ->get();
 
-        return view('frontend.layouts.manufacturing', compact('hero','plant'));
+        $rightHighlights = ManufacturingHighlight::where('column', 'right')
+            ->orderBy('order')
+            ->get();
+        $certifications = CertificationComponent::all();
+
+        return view('frontend.layouts.manufacturing', compact('hero', 'plant', 'leftHighlights', 'rightHighlights','certifications'));
     }
 
     public function careers()

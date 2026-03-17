@@ -106,6 +106,7 @@ Route::middleware(['auth'])->group(function () {
         // manufacturing page
         Route::resource('manufacturingherosection', App\Http\Controllers\Admin\ManufacturingHeroSectionController::class);
         Route::resource('manufacturingOurPlant', App\Http\Controllers\Admin\ManufacturingOurPlantController::class);
+        Route::resource('manufacturing_highlights', App\Http\Controllers\Admin\ManufacturingHighlightController::class);
 
     });
 

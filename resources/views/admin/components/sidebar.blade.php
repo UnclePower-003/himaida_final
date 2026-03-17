@@ -161,7 +161,7 @@
                         'title' => 'Manufacturing',
                         'icon' => 'fa-solid fa-star',
                         'text' => 'Formulation left right',
-                        'routes' => ['manufacturingherosection.*','manufacturingOurPlant.*',],
+                        'routes' => ['manufacturingherosection.*', 'manufacturingOurPlant.*', 'manufacturing_highlights.*'],
                         'links' => [
                             [
                                 'route' => 'manufacturingherosection.index',
@@ -172,6 +172,11 @@
                                 'route' => 'manufacturingOurPlant.index',
                                 'icon' => 'fa-solid fa-star',
                                 'text' => 'Our Plant',
+                            ],
+                            [
+                                'route' => 'manufacturing_highlights.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Highlights',
                             ],
                         ],
                     ],

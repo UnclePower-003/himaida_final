@@ -19,7 +19,6 @@
             <div class="absolute inset-0 bg-black/50"></div>
         </div>
     </section> --}}
-
     <section>
 
         <div class="relative w-full">
@@ -42,8 +41,7 @@
     <section class='relative'>
         <div class="max-w-7xl mx-auto lg:flex  justify-around px-4 py-10 space-y-5">
 
-            <div
-                class="w-full   overflow-hidden flex items-center justify-center border border-gray-100 bg-white">
+            <div class="w-full   overflow-hidden flex items-center justify-center border border-gray-100 bg-white">
                 @if (isset($plant->image))
                     <img src="{{ asset('storage/' . $plant->image) }}" alt="Manufacturing Plant Facility"
                         class="w-full h-full aspect-square max-w-[455px] md:min-w-[455px] object-cover object-center shadow-md transition-transform duration-500 hover:scale-105" />
@@ -69,6 +67,7 @@
         </div>
         <img src="{{ asset('images/manufacturing/image 20.png') }}" alt="" class='absolute  right-0 -bottom-24'>
     </section>
+
     {{-- Highlights --}}
     <section class="py-24 ">
         <div class="max-w-7xl mx-auto px-6 ">
@@ -83,76 +82,27 @@
             <div class="flex flex-col md:flex-row justify-between items-stretch gap-8 lg:gap-12">
 
                 <ul class="space-y-4 flex-1 max-w-xl text-justify">
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">FDA-compliant Honey Processing
-                            Facility</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">GMP, ISO 22000:2018 compliant manufacturing
-                            unit</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">Average monthly processing capacity: Approx
-                            1
-                            million packs</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">High-tech honey processing and filling
-                            facility
-                            designed to prevent contamination</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">Processing plants with batch capacities of
-                            30kg, 100kg, and 200kg</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">All processing vessels, pipelines, pumps,
-                            and
-                            contact parts made of SS-316, ensuring no chemical reaction and maintaining honey purity</span>
-                    </li>
+                    @foreach ($leftHighlights as $item)
+                        <li class="flex items-start">
+                            <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
+                            <span class="text-stone-800 text-[16px] leading-relaxed">
+                                {{ $item->description }}
+                            </span>
+                        </li>
+                    @endforeach
                 </ul>
 
                 <div class="hidden md:block w-0 border-l border-dashed border-gray-300 self-stretch"></div>
 
                 <ul class="space-y-4 flex-1 max-w-xl text-justify">
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">Controlled filtration, heating, and
-                            moisture
-                            management systems to preserve natural enzymes and quality</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">Filling facilities for jars, and bulk
-                            containers ranging from 1 gm to 6000 gm</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">Fully integrated packaging facility
-                            including
-                            labeling, shrink sleeves, cartons, box wrapping, and strapping</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">Separate man and material entry door for
-                            processing, filling, and packaging areas</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">In-house laboratory for quality testing,
-                            moisture analysis, purity checks, and R&D</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
-                        <span class="text-stone-800 text-[16px] leading-relaxed">Production zone equipped with dedicated
-                            dehumidification systems, and pest control units.</span>
-                    </li>
+                    @foreach ($rightHighlights as $item)
+                        <li class="flex items-start">
+                            <span class="text-[#B11E38] mr-3 mt-1 font-bold">»</span>
+                            <span class="text-stone-800 text-[16px] leading-relaxed">
+                                {{ $item->description }}
+                            </span>
+                        </li>
+                    @endforeach
                 </ul>
 
             </div>
@@ -197,34 +147,13 @@
 
                 <!-- Icons Grid -->
                 <div class="grid grid-cols-2 gap-y-12 md:gap-y-0">
+                    @foreach ($certifications as $item)
+                        <div class="flex flex-col items-center justify-center p-8 text-center space-y-3">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="" class='h-20'>
+                            <span class="text-sm font-semibold text-black uppercase tracking-wide"> {{ $item->title }}</span>
+                        </div>
+                    @endforeach
 
-                    <!-- FDA Certified -->
-                    <div class="flex flex-col items-center justify-center p-8 text-center space-y-3">
-                        <img src="{{ asset('images/aboutus/FDA 1.png') }}" alt="" class='h-20'>
-                        <span class="text-sm font-semibold text-black uppercase tracking-wide">FDA Certified</span>
-                    </div>
-
-                    <!-- ISO Certified -->
-                    <div class="flex flex-col items-center justify-center p-8 text-center space-y-3">
-                        <img src="{{ asset('images/aboutus/ISO 1.png') }}" alt="" class='h-20'>
-                        <span class="text-sm font-semibold text-black uppercase tracking-wide">ISO 22000:2018
-                            Certified</span>
-                    </div>
-
-                    <!-- GMP Certified -->
-                    <div class="flex flex-col items-center justify-center p-8 text-center space-y-3">
-                        <img src="{{ asset('images/aboutus/GMP Quality Logo Vector 1.png') }}" alt=""
-                            class='h-20'>
-                        <span class="text-sm font-semibold text-black uppercase tracking-wide">GMP Certified</span>
-                    </div>
-
-                    <!-- DFTQC Registered -->
-                    <div class="flex flex-col items-center justify-center p-8 text-center space-y-3">
-
-                        <!-- Emblem Style Placeholder -->
-                        <img src="{{ asset('images/aboutus/gmp certifiedd-01 1.png') }}" alt="" class='h-20'>
-                        <span class="text-sm font-semibold text-black uppercase tracking-wide">DFTQC Registered</span>
-                    </div>
 
                 </div>
             </div>
