@@ -46,6 +46,12 @@
                 <i class="fa-solid fa-users w-6"></i>
                 <span class="font-medium">Certificates</span>
             </a>
+            <a href="{{ route('contact_enquiries.index') }}" @click="sidebarOpen = false"
+                class="flex items-center px-4 py-3 hover:bg-primaryL hover:text-white hover:rounded-lg
+                    {{ request()->routeIs('contact_enquiries.*') ? 'bg-primaryD text-white font-semibold rounded-lg' : '' }}">
+                <i class="fa-solid fa-users w-6"></i>
+                <span class="font-medium">Contact Enquiries</span>
+            </a>
 
 
 
@@ -217,12 +223,53 @@
                         'title' => 'Contact us',
                         'icon' => 'fa-solid fa-star',
                         'text' => 'Formulation left right',
-                        'routes' => ['contactushero.*'],
+                        'routes' => ['contactushero.*', 'contact_details.*'],
                         'links' => [
                             [
                                 'route' => 'contactushero.index',
                                 'icon' => 'fa-solid fa-star',
                                 'text' => 'Hero section',
+                            ],
+                            [
+                                'route' => 'contact_details.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Contact Details',
+                            ],
+                        ],
+                    ],
+                    [
+                        'title' => 'Our Brand',
+                        'icon' => 'fa-solid fa-star',
+                        'text' => 'Formulation left right',
+                        'routes' => ['ourbrandherosection.*', 'brandspotlight.*'],
+                        'links' => [
+                            [
+                                'route' => 'ourbrandherosection.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Hero section',
+                            ],
+                            [
+                                'route' => 'brandspotlight.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Brand Spotlight',
+                            ],
+                        ],
+                    ],
+                    [
+                        'title' => 'Product Range/ Shilajit',
+                        'icon' => 'fa-solid fa-star',
+                        'text' => 'Formulation left right',
+                        'routes' => ['shilajit-manufacturing-hero.*', 'shilajit_products.*'],
+                        'links' => [
+                            [
+                                'route' => 'shilajit-manufacturing-hero.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Hero section',
+                            ],
+                            [
+                                'route' => 'shilajit_products.index',
+                                'icon' => 'fa-solid fa-star',
+                                'text' => 'Brand Spotlight',
                             ],
                         ],
                     ],

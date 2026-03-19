@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\BrandSpotlight;
 use App\Models\CareerHero;
 use App\Models\CareerValueSection;
 use App\Models\CertificationComponent;
+use App\Models\ContactDetail;
 use App\Models\ContactUsHero;
 use App\Models\ContractManufacturing;
 use App\Models\Corevalue;
@@ -21,6 +23,7 @@ use App\Models\ManufacturingHeroSection;
 use App\Models\ManufacturingHighlight;
 use App\Models\ManufacturingOurPlant;
 use App\Models\OpenPosition;
+use App\Models\OurBrandHeroSection;
 use App\Models\PrivateLabelHero;
 use App\Models\PrivateLabelling;
 use App\Models\ProcessStep;
@@ -103,13 +106,17 @@ class HomeController extends Controller
     public function contactus()
     {
         $hero = ContactUsHero::active()->first();
+        $contacts = ContactDetail::where('is_active', true)->get();
 
-        return view('frontend.layouts.contactus', compact('hero'));
+        return view('frontend.layouts.contactus', compact('hero', 'contacts'));
     }
 
     public function ourbrands()
     {
-        return view('frontend.layouts.ourbrands');
+        $hero = OurBrandHeroSection::where('is_active', 1)->latest()->first();
+        $brands = BrandSpotlight::where('active', true)->get();
+
+        return view('frontend.layouts.ourbrands', compact('hero','brands'));
     }
 
     public function partnership()

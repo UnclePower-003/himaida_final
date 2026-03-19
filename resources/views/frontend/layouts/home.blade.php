@@ -90,9 +90,9 @@
             {{-- Product Categories Grid --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0 border border-gray-400">
                 @foreach ($products as $product)
-                    <div class="border p-6 flex flex-col items-center hover:bg-gray-50">
-                        <div class="mb-6">
-                            <img src="{{ asset('storage/' . $product->image) }}" class="w-14">
+                    <div class="border p-6 flex flex-col items-center justify-center text-center hover:bg-gray-50">
+                        <div class="p-4">
+                            <img src="{{ asset('storage/' . $product->image) }}" class="w-14 object-contain">
                         </div>
                         <h3 class="font-medium uppercase text-center tracking-wider max-w-[160px]">
                             {!! nl2br(e($product->title)) !!}
@@ -110,53 +110,75 @@
             $rest = $categories->slice(1);
         @endphp
 
-        <div
-            class="flex flex-col lg:flex-row gap-6 lg:overflow-x-auto pb-4 lg:h-[750px] w-full no-scrollbar lg:scroll-smooth">
+        <div class="flex flex-col lg:flex-row gap-3 w-full lg:h-[600px]">
 
+            {{-- FEATURED LEFT CARD --}}
             @if ($first)
-                <div class="w-full lg:w-[500px] lg:h-full group overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl lg:shrink-0 "
+                <div class="w-full lg:w-[35%] lg:h-full group overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl rounded-[5px]"
                     style="background: {{ $first->bg_color }}">
 
-                    <div class="flex-grow p-6 flex items-center justify-center overflow-hidden min-h-[350px] lg:min-h-0">
+                    <div class="flex-1 flex items-center justify-center overflow-hidden p-2">
                         <img src="{{ asset('storage/' . $first->image) }}" alt="{{ $first->title }}"
-                            class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
+                            class="w-full h-full object-contain">
                     </div>
 
-                    <div class="pb-10 text-center flex justify-center items-center shrink-0 px-4">
-                        <h3 class="text-2xl max-w-[200px] font-bold uppercase tracking-tight leading-relaxed">
+                    <div class="p-4 text-center px-4 shrink-0">
+                        <h3 class="text-2xl max-w-[200px] mx-auto font-bold uppercase tracking-tight leading-relaxed">
                             {{ $first->title }}
                         </h3>
-                       
                     </div>
                 </div>
             @endif
 
-            <div
-                class="w-auto grid grid-cols-1 md:grid-cols-2 lg:grid-rows-2 lg:grid-flow-col gap-6 lg:shrink-0 ">
+            {{-- RIGHT SIDE: 2×2 FLEX GRID --}}
+            <div class="w-full lg:w-[65%] lg:h-full flex flex-col gap-3">
 
-                @foreach ($rest as $cat)
-                    <div class="group h-full w-full lg:w-[400px] overflow-hidden flex flex-col transition-all duration-300 hover:shadow-lg  border border-transparent hover:border-gray-200"
-                        style="background: {{ $cat->bg_color }}">
+                {{-- Row 1 --}}
+                <div class="flex flex-col sm:flex-row gap-3 flex-1 h-[40%]">
+                    @foreach ($rest->take(2) as $cat)
+                        <div class="flex-1 group overflow-hidden flex flex-col transition-all duration-300 hover:shadow-lg rounded-[5px] border border-transparent hover:border-gray-200"
+                            style="background: {{ $cat->bg_color }}">
 
-                        <div
-                            class="flex-grow p-4 flex items-center justify-center overflow-hidden min-h-[250px] lg:min-h-0">
-                            <img src="{{ asset('storage/' . $cat->image) }}" alt="{{ $cat->title }}"
-                                class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
+                            <div
+                                class="flex-1 p-2 flex items-center justify-center overflow-hidden">
+                                <img src="{{ asset('storage/' . $cat->image) }}" alt="{{ $cat->title }}"
+                                    class="w-full h-full object-contain">
+                            </div>
+
+                            <div class="pb-6 text-center shrink-0 px-2">
+                                <h3 class="text-lg font-semibold uppercase tracking-tight leading-relaxed">
+                                    {{ $cat->title }}
+                                </h3>
+                            </div>
                         </div>
+                    @endforeach
+                </div>
 
-                        <div class="pb-6 text-center shrink-0 px-2">
-                            <h3
-                                class="text-lg font-semibold uppercase tracking-tight  leading-relaxed ">
-                                {{ $cat->title }}
-                            </h3>
+                {{-- Row 2 --}}
+                <div class="flex flex-col sm:flex-row gap-3 flex-1 h-[40%]">
+                    @foreach ($rest->skip(2)->take(2) as $cat)
+                        <div class="flex-1 group overflow-hidden flex flex-col transition-all duration-300 hover:shadow-lg rounded-[5px] border border-transparent hover:border-gray-200"
+                            style="background: {{ $cat->bg_color }}">
+
+                            <div
+                                class="flex-1 p-2 flex items-center justify-center overflow-hidden min-h-[200px] lg:min-h-0">
+                                <img src="{{ asset('storage/' . $cat->image) }}" alt="{{ $cat->title }}"
+                                    class="w-full h-full object-contain">
+                            </div>
+
+                            <div class="pb-6 text-center shrink-0 px-2">
+                                <h3 class="text-lg font-semibold uppercase tracking-tight leading-relaxed">
+                                    {{ $cat->title }}
+                                </h3>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
 
             </div>
+
         </div>
     </section>
-
     {{-- Our Services --}}
     <section class="max-w-7xl mx-auto px-4 py-16">
 
@@ -234,7 +256,8 @@
                     <div class="flex justify-end mt-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="#C41C2C" class="w-8 h-8 transition-transform group-hover:translate-x-1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                         </svg>
                     </div>
                 </div>
@@ -672,7 +695,7 @@
         </div>
 
     </section>
-   @include('frontend.components.getintouch')
+    @include('frontend.components.getintouch')
 
 
 

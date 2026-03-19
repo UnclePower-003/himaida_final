@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ShilajitManufacturingHero;
+use App\Models\ShilajitManufacturingProduct;
 
 class ProductRangeController extends Controller
 {
     public function shilajitmanufacturing()
+
     {
-        return view('frontend.layouts.productrange.shilajitmanufacturing');
+        $hero = ShilajitManufacturingHero::getActive();
+        $products = ShilajitManufacturingProduct::active()
+            ->ordered()
+            ->get();
+        return view('frontend.layouts.productrange.shilajitmanufacturing',compact('hero','products'));
     }
 
     public function supplimentmanufacturing()

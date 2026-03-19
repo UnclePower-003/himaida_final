@@ -91,46 +91,30 @@
 
                 <!-- Contact Details -->
                 <div class="space-y-8">
-                    <!-- Phone -->
-                    <div class="flex items-center space-x-5 group">
-                        <div
-                            class="w-12 h-12 rounded-full bg-[#B11E38] flex items-center justify-center text-white transition-transform group-hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-                            </svg>
-                        </div>
-                        <span class="text-primaryText font-medium">+977-980-2372074</span>
-                    </div>
+                    @foreach ($contacts as $contact)
+                        <div class="flex items-center space-x-5 group">
 
-                    <!-- Email -->
-                    <div class="flex items-center space-x-5 group">
-                        <div
-                            class="w-12 h-12 rounded-full bg-[#B11E38] flex items-center justify-center text-white transition-transform group-hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                            </svg>
-                        </div>
-                        <span class="text-primaryText font-medium">info@Himaida.com</span>
-                    </div>
+                            <div
+                                class="w-16 h-16 rounded-full bg-[#B11E38] flex items-center justify-center overflow-hidden p-4">
 
-                    <!-- Address -->
-                    <div class="flex items-center space-x-5 group">
-                        <div
-                            class="w-12 h-12 rounded-full bg-[#B11E38] flex items-center justify-center text-white transition-transform group-hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                            </svg>
+                                @if ($contact->icon)
+                                    <img src="{{ asset('storage/' . $contact->icon) }}"
+                                        class="w-full h-full object-contain">
+                                @endif
+
+                            </div>
+
+                            <span class="text-primaryText  text-[18px]  tracking-wider">
+                                {{ $contact->value }}
+                            </span>
+
                         </div>
-                        <span class="text-primaryText font-medium">Budhanilkantha Road, Ghumti.</span>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
             <!-- Right Side: Query Form -->
-            <div class="space-y-8">
+            <div class="space-y-8" id='enquries_form'>
                 <div>
                     <h2 class="text-3xl font-bold text-black tracking-tight uppercase">
                         Let us know your queries
@@ -145,43 +129,74 @@
                 </p>
 
                 <!-- Form Container -->
-                <div class="bg-white p-8 rounded border border-primary">
+                {{-- <div class="bg-white p-8 rounded border border-primary max-w-2xl mx-auto">
                     <h3 class="text-2xl font-bold text-gray-900 mb-8 uppercase tracking-wide">Hey! There</h3>
-                    <form class="space-y-12">
+
+                        <!-- Success Message -->
+                        @if (session('success'))
+                            <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        <!-- Validation Errors -->
+                        @if ($errors->any())
+                            <div class="bg-red-100 text-red-800 p-3 rounded mb-4">
+                                <ul class="list-disc pl-5">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                    <form action="{{ route('contact_enquiriesF.store') }}" method="POST" class="space-y-6">
+                        @csrf
+
                         <div class="border-b border-gray-300">
-                            <input type="text" placeholder="Enter Name *"
-                                class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400" />
+                            <input type="text" name="name" placeholder="Enter Name *"
+                                class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400"
+                                value="{{ old('name') }}" required />
                         </div>
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="border-b border-gray-300">
-                                <input type="email" placeholder="Enter Email *"
-                                    class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400" />
+                                <input type="email" name="email" placeholder="Enter Email *"
+                                    class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400"
+                                    v   alue="{{ old('email') }}" required />
                             </div>
                             <div class="border-b border-gray-300">
-                                <input type="tel" placeholder="Enter Mobile Number *"
-                                    class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400" />
+                                <input type="tel" name="mobile" placeholder="Enter Mobile Number *"
+                                    class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400"
+                                    value="{{ old('mobile') }}" required />
                             </div>
                         </div>
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="border-b border-gray-300">
-                                <input type="text" placeholder="Enter Company*"
-                                    class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400" />
+                                <input type="text" name="company" placeholder="Enter Company"
+                                    class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400"
+                                    value="{{ old('company') }}" />
                             </div>
                             <div class="border-b border-gray-300">
-                                <input type="text" placeholder="Enter City *"
-                                    class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400" />
+                                <input type="text" name="city" placeholder="Enter City"
+                                    class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400"
+                                    value="{{ old('city') }}" />
                             </div>
                         </div>
+
                         <div class="border-b border-gray-300">
-                            <textarea placeholder="Brief about your requirement" rows="3"
-                                class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400 resize-none"></textarea>
+                            <textarea name="message" placeholder="Brief about your requirement" rows="3"
+                                class="w-full py-2 bg-transparent text-sm focus:outline-none placeholder:text-gray-400 resize-none">{{ old('message') }}</textarea>
                         </div>
+
                         <button type="submit"
                             class="w-full bg-[#B11E38] text-white py-3 rounded-lg font-bold text-sm tracking-widest transition-transform hover:scale-[1.02] active:scale-95 shadow-md">
                             SEND US
                         </button>
                     </form>
-                </div>
+                </div> --}}
+                @include('frontend.components.form')
             </div>
         </div>
     </section>

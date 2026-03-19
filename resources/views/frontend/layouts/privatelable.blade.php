@@ -312,7 +312,7 @@
                     class="w-full h-full bg-stone-50 rounded-t-full flex items-end justify-center overflow-hidden shadow-inner border border-gray-100">
 
                     @if (isset($contract->image))
-                        <img src="{{ asset('storage/' . $contract->image) }}" class="w-full h-auto object-cover">
+                        <img src="{{ asset('storage/' . $contract->image) }}" class="w-full h-auto object-contain">
                     @endif
 
                 </div>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ContactEnquiryController;
+use App\Http\Controllers\Frontend\ContactEnquiryController as FormController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductRangeController;
 use App\Http\Controllers\ProfileController;
@@ -13,6 +15,9 @@ Route::get('careers', [HomeController::class, 'careers'])->name('careers');
 Route::get('contactus', [HomeController::class, 'contactus'])->name('contactus');
 Route::get('ourbrands', [HomeController::class, 'ourbrands'])->name('ourbrands');
 Route::get('partnership', [HomeController::class, 'partnership'])->name('partnership');
+
+// form
+Route::post('contact_enquiriesF', [FormController::class, 'store'])->name('contact_enquiriesF.store');
 
 // Product Range
 Route::get('shilajitmanufacturing', [ProductRangeController::class, 'shilajitmanufacturing'])->name('shilajitmanufacturing');
@@ -109,17 +114,44 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('manufacturing_highlights', App\Http\Controllers\Admin\ManufacturingHighlightController::class);
         Route::resource('manifacturing_research', App\Http\Controllers\Admin\ManifacturingResearchAndInovationController::class);
 
-        //Career page
+        // Career page
         Route::resource('careerhero', App\Http\Controllers\Admin\CareerHeroController::class);
         Route::resource('careervalue', App\Http\Controllers\Admin\CareerValueSectionController::class);
         Route::resource('openpositions', App\Http\Controllers\Admin\OpenPositionController::class);
-        
-        //contact us page
+
+        // contact us page
         Route::resource('contactushero', App\Http\Controllers\Admin\ContactUsHeroController::class);
+        Route::resource('contact_details', App\Http\Controllers\Admin\ContactDetailController::class);
+        
+        // form
+        Route::prefix('contact_enquiries')->group(function () {
+            
+            // Admin index page (Blade view)
+            Route::get('/', [ContactEnquiryController::class, 'index'])->name('contact_enquiries.index');
+            
+            // JSON endpoint for AJAX table
+            Route::get('/json', [ContactEnquiryController::class, 'getEnquiriesJson'])->name('contact_enquiries.json');
+            
+            // Show a single enquiry
+            Route::get('/{contactEnquiry}', [ContactEnquiryController::class, 'show'])->name('contact_enquiries.show');
+            
+            // Delete enquiry via AJAX
+            Route::delete('/{contactEnquiry}', [ContactEnquiryController::class, 'destroy'])->name('contact_enquiries.destroy');
+            
+            // Toggle active status via AJAX
+            Route::post('/toggle-active/{contactEnquiry}', [ContactEnquiryController::class, 'toggleActive'])->name('contact_enquiries.toggleActive');
+            });
 
+            //our brand
+            Route::resource('ourbrandherosection', App\Http\Controllers\Admin\OurBrandHeroSectionController::class);
+            Route::resource('brandspotlight', App\Http\Controllers\Admin\BrandSpotlightController::class);
 
-    });
-
-});
+            // shilajit-manufacturing-hero
+            Route::resource('shilajit-manufacturing-hero', App\Http\Controllers\Admin\ShilajitManufacturingHeroController::class);
+            Route::resource('shilajit_products', App\Http\Controllers\Admin\ShilajitManufacturingProductController::class);
+            });
+            
+            
+            });
 
 require __DIR__.'/auth.php';

@@ -96,10 +96,10 @@
             <div class="max-w-7xl flex justify-center items-center mx-auto px-6 py-20">
                 <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 lg:pl-20">
 
-                    <div class="max-w-[400px]">
+                    <div class="max-w-[500px]">
 
                         <img src="{{ asset('uploads/visionmission/' . $visionMission->vision_icon) }}"
-                            class="min-h-16 min-w-16 object-cover p-2">
+                            class="min-h-10 min-w-10 h-20 w-20 object-contain p-2">
 
                         <h2 class="text-5xl font-semibold uppercase">
                             {{ $visionMission->vision_title }}
@@ -114,10 +114,10 @@
                     </div>
 
 
-                    <div class="max-w-[400px]">
+                    <div class="max-w-[500px]">
 
                         <img src="{{ asset('uploads/visionmission/' . $visionMission->mission_icon) }}"
-                            class="min-h-16 min-w-16 object-cover p-2">
+                            class="min-h-10 min-w-10 h-20 w-20 object-contain p-2">
 
                         <h2 class="text-5xl font-semibold uppercase">
                             {{ $visionMission->mission_title }}
@@ -242,7 +242,8 @@
                 @foreach ($corevalues as $value)
                     <div class="flex flex-col items-center text-center p-8 border-b lg:border-r border-gray-300">
 
-                        <img src="{{ asset('uploads/corevalues/' . $value->icon) }}" class="h-10 mb-4">
+                        <div class="h-14 w-16 mb-4"><img src="{{ asset('uploads/corevalues/' . $value->icon) }}"
+                                class="object-contain"></div>
 
                         <h3 class="uppercase text-lg font-semibold">
                             {{ $value->title }}

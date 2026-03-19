@@ -56,6 +56,22 @@
     </div>
 </section>
 <section>
+    @php
+        function isActive($route)
+        {
+            return request()->routeIs($route) ? 'font-bold' : '';
+        }
+        $productRoutes = [
+            'shilajitmanufacturing',
+            'supplimentmanufacturing',
+            'herbalmanufacturing',
+            'spicesmanufacturing',
+            'driedfood',
+            'honeyproduts',
+            'tea',
+            'honeymanufacturing',
+        ];
+    @endphp
     {{-- navigationlinks --}}
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex max-md:justify-between justify-center max-w-full items-center px-4 lg:px-12 py-6">
@@ -73,19 +89,19 @@
                 class='hidden md:flex max-w-6xl justify-between items-center uppercase md:text-[9px] lg:text-[12px] font-semibold gap-4 lg:w-full tracking-wider '>
                 <li>
                     <a href="{{ route('home') }}"
-                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out">
+                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out {{ isActive('home') }}">
                         Home
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('aboutus') }}"
-                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out">
+                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out {{ isActive('aboutus') }}">
                         About Us
                     </a>
                 </li>
 
                 {{-- Product Range with Dropdown --}}
-                <li class="relative group">
+                <li class="relative group {{ request()->routeIs($productRoutes) ? 'font-bold' : '' }}">
                     <button
                         class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out flex items-center gap-2 uppercase">
                         Product Range
@@ -97,37 +113,37 @@
 
                     {{-- Dropdown Menu --}}
                     <div
-                        class="absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 ease-in-out py-2">
+                        class="absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 font-normal group-hover:visible transition duration-300 ease-in-out py-2 {{ request()->routeIs($productRoutes) ? 'font-bold' : '' }}">
                         <a href="{{ route('shilajitmanufacturing') }}"
-                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
+                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200 {{ request()->routeIs('shilajitmanufacturing') ? 'font-bold' : '' }}">
                             Shilajit Manufacturing
                         </a>
                         <a href="{{ route('supplimentmanufacturing') }}"
-                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
+                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200 {{ request()->routeIs('supplimentmanufacturing') ? 'font-bold' : '' }}">
                             Suppliment Manufacturing
                         </a>
                         <a href="{{ route('herbalmanufacturing') }}"
-                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
+                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200 {{ request()->routeIs('herbalmanufacturing') ? 'font-bold' : '' }}">
                             Herbal Manufacturing
                         </a>
                         <a href="{{ route('spicesmanufacturing') }}"
-                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
+                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200 {{ request()->routeIs('spicesmanufacturing') ? 'font-bold' : '' }}">
                             Spices
                         </a>
                         <a href="{{ route('driedfood') }}"
-                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
+                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200 {{ request()->routeIs('driedfood') ? 'font-bold' : '' }}">
                             Dried Food
                         </a>
                         <a href="{{ route('honeyproduts') }}"
-                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
+                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200 {{ request()->routeIs('honeyproduts') ? 'font-bold' : '' }}">
                             honey produts
                         </a>
                         <a href="{{ route('tea') }}"
-                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
+                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200 {{ request()->routeIs('tea') ? 'font-bold' : '' }}">
                             Tea
                         </a>
                         <a href="{{ route('honeymanufacturing') }}"
-                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200">
+                            class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-stone-600 transition duration-200 {{ request()->routeIs('honeymanufacturing') ? 'font-bold' : '' }}">
                             honeymanu facturing
                         </a>
                     </div>
@@ -135,31 +151,31 @@
 
                 <li>
                     <a href="{{ route('privatelable') }}"
-                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out">
+                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out {{ isActive('privatelable') }}">
                         Private Label
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('ourbrands') }}"
-                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out">
+                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out {{ isActive('ourbrands') }}">
                         Our Brands
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('manufacture') }}"
-                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out">
+                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out {{ isActive('manufacture') }}">
                         Manufacturing
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('careers') }}"
-                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out">
+                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out {{ isActive('careers') }}">
                         Careers
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('contactus') }}"
-                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out">
+                        class="text-gray-800 hover:text-stone-600 transition duration-300 ease-in-out {{ isActive('contactus') }}">
                         Contact Us
                     </a>
                 </li>
